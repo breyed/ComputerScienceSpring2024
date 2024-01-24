@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://be70yvflutyy0"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_ghcty"]
+[ext_resource type="Texture2D" uid="uid://dgvokiha5e7nj" path="res://cookie.png" id="2_4xl8g"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ghcty")
+
+[node name="CookieButton" type="Button" parent="."]
+offset_left = 106.0
+offset_top = 60.0
+offset_right = 581.0
+offset_bottom = 549.0
+
+[node name="CookieSprite" type="Sprite2D" parent="."]
+position = Vector2(352, 314)
+texture = ExtResource("2_4xl8g")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 678.0
+offset_top = 191.0
+offset_right = 1045.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 200
+
+[connection signal="pressed" from="CookieButton" to="." method="_on_cookie_button_pressed"]
