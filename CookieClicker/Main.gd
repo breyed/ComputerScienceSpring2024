@@ -1,17 +1,12 @@
 extends Node2D
 
 var score = 0
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+var points_per_click = 1
 
 func _on_cookie_button_pressed():
-	score = score  + 1
+	if score == 10:
+		points_per_click = 3
+	score = score  + points_per_click
 	$ScoreLabel.text = str(score)
+
+	$AudioStreamPlayer.play()
