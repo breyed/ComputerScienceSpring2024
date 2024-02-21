@@ -19,4 +19,5 @@ func add_to_score(points):
 	$ScoreLabel.text = str(score)
 	$MultiClickButton.disabled = score < multi_click_price
 	$AudioStreamPlayer.play()
-	
+	$FlyingCookieSprite/AnimationPlayer.stop()
+	$FlyingCookieSprite/AnimationPlayer.play("flying_cookie")
