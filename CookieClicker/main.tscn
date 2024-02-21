@@ -8,23 +8,31 @@
 script = ExtResource("1_ghcty")
 
 [node name="CookieButton" type="Button" parent="."]
-offset_left = 106.0
-offset_top = 60.0
-offset_right = 581.0
-offset_bottom = 549.0
+offset_left = 321.0
+offset_top = 44.0
+offset_right = 796.0
+offset_bottom = 533.0
 
-[node name="CookieSprite" type="Sprite2D" parent="."]
-position = Vector2(352, 314)
+[node name="CookieSprite" type="Sprite2D" parent="CookieButton"]
+position = Vector2(246, 254)
 texture = ExtResource("2_4xl8g")
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 678.0
-offset_top = 191.0
-offset_right = 1045.0
-offset_bottom = 433.0
+offset_left = 820.0
+offset_top = 168.0
+offset_right = 1109.0
+offset_bottom = 441.0
 theme_override_font_sizes/font_size = 200
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gqn6l")
 
+[node name="MultiClickButton" type="Button" parent="."]
+offset_left = 65.0
+offset_top = 110.0
+offset_right = 272.0
+offset_bottom = 152.0
+text = "Multi Click"
+
 [connection signal="pressed" from="CookieButton" to="." method="_on_cookie_button_pressed"]
+[connection signal="pressed" from="MultiClickButton" to="." method="_on_multi_click_button_pressed"]
