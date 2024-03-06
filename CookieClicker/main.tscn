@@ -4,6 +4,45 @@
 [ext_resource type="Texture2D" uid="uid://dgvokiha5e7nj" path="res://cookie.png" id="2_4xl8g"]
 [ext_resource type="AudioStream" uid="uid://bwebndfqplkat" path="res://click.mp3" id="3_gqn6l"]
 
+[sub_resource type="Animation" id="Animation_elv85"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(570.875, 289.875)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.990443, 0.990443)]
+}
+
 [sub_resource type="Animation" id="Animation_htgug"]
 resource_name = "flying_cookie"
 length = 0.5
@@ -44,45 +83,6 @@ tracks/2/keys = {
 "values": [Vector2(0.990443, 0.990443), Vector2(0.317153, 0.317153)]
 }
 
-[sub_resource type="Animation" id="Animation_elv85"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(570.875, 289.875)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.990443, 0.990443)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wo3ov"]
 _data = {
 "RESET": SubResource("Animation_elv85"),
@@ -111,11 +111,18 @@ horizontal_alignment = 1
 stream = ExtResource("3_gqn6l")
 
 [node name="MultiClickButton" type="Button" parent="."]
-offset_left = 65.0
+offset_left = 60.0
 offset_top = 110.0
-offset_right = 272.0
+offset_right = 260.0
 offset_bottom = 152.0
 text = "Multi Click"
+
+[node name="GrannyButton" type="Button" parent="."]
+offset_left = 60.0
+offset_top = 181.0
+offset_right = 260.0
+offset_bottom = 223.0
+text = "Granny"
 
 [node name="FlyingCookieSprite" type="Sprite2D" parent="."]
 position = Vector2(570.875, 289.875)
@@ -130,3 +137,4 @@ speed_scale = 3.0
 
 [connection signal="pressed" from="CookieButton" to="." method="_on_cookie_button_pressed"]
 [connection signal="pressed" from="MultiClickButton" to="." method="_on_multi_click_button_pressed"]
+[connection signal="pressed" from="GrannyButton" to="." method="_on_granny_button_pressed"]
