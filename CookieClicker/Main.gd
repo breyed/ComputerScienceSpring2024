@@ -13,7 +13,7 @@ func _process(x):
 	frames = frames + 1
 	if frames == 60:
 		frames = 0
-		add_to_score(1)
+		add_to_score(grannies)
 
 func _on_cookie_button_pressed():
 	add_to_score(points_per_click)
@@ -29,6 +29,13 @@ func add_to_score(points):
 	score = score + points
 	$ScoreLabel.text = str(score)
 	$MultiClickButton.disabled = score < multi_click_price
-	$AudioStreamPlayer.play()
-	$FlyingCookieSprite/AnimationPlayer.stop()
-	$FlyingCookieSprite/AnimationPlayer.play("flying_cookie")
+	
+	# Show a flying cookie animation.
+	if points > 0:
+		var flying_cookie = $FlyingCookieSprite.duplicate()
+		add_child(flying_cookie)
+		var player = flying_cookie.get_node("AnimationPlayer")
+		player.play("flying_cookie_animation")
+
+		var on_finished = func(animation): flying_cookie.queue_free()
+		player.animation_finished.connect(on_finished)
