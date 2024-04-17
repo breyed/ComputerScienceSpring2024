@@ -4,6 +4,7 @@ var score = 0
 var points_per_click = 1
 var multi_click_price = 10
 var grannies = 0
+var grandpas = 0
 var frames = 0
 
 func _ready():
@@ -11,7 +12,7 @@ func _ready():
 
 func _process(x):
 	frames = frames + 1
-	if frames == 60:
+	if frames == 60 / (grandpas + 1):
 		frames = 0
 		add_to_score(grannies)
 
@@ -24,11 +25,14 @@ func _on_multi_click_button_pressed():
 
 func _on_granny_button_pressed():
 	grannies = grannies + 1
+
+func _on_grandpa_button_pressed():
+	grandpas = grandpas + 2
 	
 func add_to_score(points):
 	score = score + points
 	$ScoreLabel.text = str(score)
-	$MultiClickButton.disabled = score < multi_click_price
+	$Bonuses/Box/MultiClickButton.disabled = score < multi_click_price
 	
 	# Show a flying cookie animation.
 	if points > 0:

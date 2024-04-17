@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://be70yvflutyy0"]
+[gd_scene load_steps=10 format=3 uid="uid://be70yvflutyy0"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ghcty"]
 [ext_resource type="Texture2D" uid="uid://dgvokiha5e7nj" path="res://cookie.png" id="2_4xl8g"]
 [ext_resource type="AudioStream" uid="uid://bwebndfqplkat" path="res://click.mp3" id="3_gqn6l"]
+[ext_resource type="Texture2D" uid="uid://b7wbwqx0mdy0v" path="res://multi_click.svg" id="4_147bc"]
+[ext_resource type="Texture2D" uid="uid://m3no0sgwla7l" path="res://granny.svg" id="5_02mxq"]
+[ext_resource type="Texture2D" uid="uid://ge6pxg1my8lc" path="res://grandpa.svg" id="6_ekk0q"]
 
 [sub_resource type="Animation" id="Animation_vwiio"]
 length = 0.001
@@ -109,20 +112,6 @@ horizontal_alignment = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gqn6l")
 
-[node name="MultiClickButton" type="Button" parent="."]
-offset_left = 60.0
-offset_top = 110.0
-offset_right = 260.0
-offset_bottom = 152.0
-text = "Multi Click"
-
-[node name="GrannyButton" type="Button" parent="."]
-offset_left = 60.0
-offset_top = 181.0
-offset_right = 260.0
-offset_bottom = 223.0
-text = "Granny"
-
 [node name="FlyingCookieSprite" type="Sprite2D" parent="."]
 position = Vector2(575, 288)
 texture = ExtResource("2_4xl8g")
@@ -133,6 +122,28 @@ libraries = {
 }
 speed_scale = 2.0
 
+[node name="Bonuses" type="ScrollContainer" parent="."]
+offset_left = 60.0
+offset_top = 47.0
+offset_right = 299.0
+offset_bottom = 544.0
+
+[node name="Box" type="VBoxContainer" parent="Bonuses"]
+layout_mode = 2
+
+[node name="MultiClickButton" type="Button" parent="Bonuses/Box"]
+layout_mode = 2
+icon = ExtResource("4_147bc")
+
+[node name="GrannyButton" type="Button" parent="Bonuses/Box"]
+layout_mode = 2
+icon = ExtResource("5_02mxq")
+
+[node name="GrandpaButton" type="Button" parent="Bonuses/Box"]
+layout_mode = 2
+icon = ExtResource("6_ekk0q")
+
 [connection signal="pressed" from="CookieButton" to="." method="_on_cookie_button_pressed"]
-[connection signal="pressed" from="MultiClickButton" to="." method="_on_multi_click_button_pressed"]
-[connection signal="pressed" from="GrannyButton" to="." method="_on_granny_button_pressed"]
+[connection signal="pressed" from="Bonuses/Box/MultiClickButton" to="." method="_on_multi_click_button_pressed"]
+[connection signal="pressed" from="Bonuses/Box/GrannyButton" to="." method="_on_granny_button_pressed"]
+[connection signal="pressed" from="Bonuses/Box/GrandpaButton" to="." method="_on_grandpa_button_pressed"]
