@@ -5,6 +5,9 @@ var points_per_click = 1
 var multi_click_price = 10
 var grannies = 0
 var grandpas = 0
+var grandkids = 0
+var nannies = 0
+
 var frames = 0
 
 func _ready():
@@ -12,7 +15,7 @@ func _ready():
 
 func _process(x):
 	frames = frames + 1
-	if frames == 60 / (grandpas + 1):
+	if frames >= 60 / (grandpas + 1):
 		frames = 0
 		add_to_score(grannies)
 
@@ -30,6 +33,9 @@ func _on_grandpa_button_pressed():
 	grandpas = grandpas + 2
 	
 func add_to_score(points):
+	for grandkid in range(grandkids):
+		if randf() < 0.1: return
+	
 	score = score + points
 	$ScoreLabel.text = str(score)
 	$Bonuses/Box/MultiClickButton.disabled = score < multi_click_price
