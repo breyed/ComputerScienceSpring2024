@@ -109,6 +109,13 @@ offset_bottom = 454.0
 theme_override_font_sizes/font_size = 200
 horizontal_alignment = 1
 
+[node name="ScoreDetailLabel" type="Label" parent="."]
+offset_left = 837.0
+offset_top = 433.0
+offset_right = 1130.0
+offset_bottom = 706.0
+theme_override_font_sizes/font_size = 40
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gqn6l")
 

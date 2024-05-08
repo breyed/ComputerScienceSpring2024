@@ -12,12 +12,29 @@ var nannies = 0
 
 var frames = 0
 
+var clicksByScale = { 4: 0, 3: 0, 2: 0 }
+
 func _ready():
 	add_to_score(0)
+	
+	get_window().size = Vector2(2000, 1000)
+	
+	for _r in range(100):
+		var random_cookie = $CookieButton.duplicate()
+		var scale = randi_range(2, 4)
+		random_cookie.scale = Vector2(1.0 / scale, 1.0 / scale)
+		random_cookie.position = Vector2(randi_range(0, 2000), randi_range(0, 1000))
+		
+		var clicked = func():
+			random_cookie.queue_free()
+			clicksByScale[scale] = clicksByScale[scale] + 1
+		random_cookie.connect('pressed', clicked)
+		
+		add_child(random_cookie)
 
-func _process(x):
+func _process(_x):
 	frames = frames + 1
-	if frames >= 60 / (grandpas + 1):
+	if frames >= 60.0 / (grandpas + 1):
 		frames = 0
 		add_to_score(grannies)
 
@@ -42,6 +59,7 @@ func add_to_score(points):
 	
 	score = score + points
 	$ScoreLabel.text = str(score)
+	$ScoreDetailLabel.text = "Small: %d\nMedium: %d\nLarge: %d" % [clicksByScale[4], clicksByScale[3], clicksByScale[2]]
 	$Bonuses/Box/MultiClickButton.disabled = score < multi_click_price
 	$Bonuses/Box/GrannyButton.disabled = score < granny_price
 	$Bonuses/Box/GrandpaButton.disabled = score < grandpa_price
@@ -54,5 +72,5 @@ func add_to_score(points):
 		var player = flying_cookie.get_node("AnimationPlayer")
 		player.play("flying_cookie_animation")
 
-		var on_finished = func(animation): flying_cookie.queue_free()
+		var on_finished = func(_animation): flying_cookie.queue_free()
 		player.animation_finished.connect(on_finished)
